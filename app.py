@@ -74,6 +74,6 @@ if __name__ == "__main__":
     bot_thread.daemon = True
     bot_thread.start()
     
-    # Flask رو اجرا کن
+    # Flask رو اجرا کن (تا Render خوشحال بشه!)
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
