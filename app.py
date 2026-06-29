@@ -2,7 +2,7 @@ from balethon import Client
 from balethon.objects import Message
 import os
 
-token = "458860954:0gnj0LISkmMk7xR34tTXlnsH21F7Wmd0g_"
+token = "458869954:0gnj0LISkmMk7xR34tTXlnsH21F7Wmd0g"
 client = Client(token=token)
 
 @client.on_message()
