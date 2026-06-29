@@ -2,10 +2,12 @@ from flask import Flask
 import os
 import threading
 import json
-from Balethon import Client
-from Balethon.objects import Message
+from balethon import Client
+from balethon.objects import Message
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+# بقیه کد...
 
 app = Flask(__name__)
 
@@ -50,7 +52,7 @@ def health():
 
 # ====== تابع اجرای ربات ======
 def run_bot():
-    client = Client(token="458869954:jMNBFOv_vG1I_wXzUA_eHAsV5f8YIZBEhk")
+    client = Client(token="458860954:CkZ5gCSx1OltoLq3JVIKOAPGnZKwT2GPN9A")
     
     @client.on_message()
     async def handle_message(message: Message):
