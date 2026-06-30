@@ -1,14 +1,37 @@
-from balethon import Client
-from balethon.objects import Message
+from flask import Flask, request, jsonify
+import requests
 import os
 
-token = "458860954:0gnj0LISkmMk7xR34tTXlnsH21F7Wmd0g"
-client = Client(token=token)
+app = Flask(__name__)
 
-@client.on_message()
-async def handle_message(message: Message):
-    await message.reply("✅ ربات آنلاین است!")
+TOKEN = "458860954:0gnj0LISkmMk7xR34tTXlnsH21F7Wmd0g"
+BASE_URL = f"https://bale.ai/{TOKEN}"
+
+def send_message(chat_id, text):
+    url = f"{BASE_URL}/sendMessage"
+    payload = {"chat_id": chat_id, "text": text}
+    try:
+        requests.post(url, json=payload)
+    except:
+        pass
+
+@app.route("/", methods=["GET", "POST"])
+def webhook():
+    if request.method == "POST":
+        data = request.get_json()
+        if data and "message" in data:
+            chat_id = data["message"]["chat"]["id"]
+            text = data["message"].get("text", "")
+            if text == "/start":
+                send_message(chat_id, "سلام! من ربات پزشکی هستم.")
+            else:
+                send_message(chat_id, f"شما گفتید: {text}")
+    return "OK", 200
+
+@app.route("/health")
+def health():
+    return "OK", 200
 
 if __name__ == "__main__":
-    print("✅ ربات در حال اجراست...")
-    client.run()
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
