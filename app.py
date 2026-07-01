@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-TOKEN = "458860954:Ognj0lISkmMK7xR34tTXlnsH21FTWmdOg_Q"
+TOKEN = "458860954:nq14x2k1l94bMS4BCvR3rjZHWhXEvNV1T9I"
 BASE_URL = f"https://tapi.bale.ai/bot{TOKEN}"
 DATA_FILE = "medical_data.json"
 
